@@ -83,8 +83,8 @@ echo $error;
 </span>
 					<h3>Register</h3>
 					<form method="POST">
-						<input class="form-control" type="text" name="vardas">
-						<input class="form-control" type="password" name="slaptazodis">
+						<input class="form-control" type="text" name="vardas" placeholder="Username">
+						<input class="form-control" type="password" name="slaptazodis" placeholder="Password">
 						<button class="form-control btn btn-success mt-1" name="submit">Submit</button>
 					</form>
 				</div>

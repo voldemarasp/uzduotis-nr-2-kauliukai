@@ -1,3 +1,5 @@
+
+//rodome visa statistika
 $.getJSON("game.php", function(result) {
 	$("#statistika").html('');
 
@@ -9,16 +11,16 @@ $.getJSON("game.php", function(result) {
 
 var i = 0;
 var laimejimas = [];
-
+//sukame kauliukus ir rodome rezultatus
 $( "#roll_dice" ).click(function() {
 
 	i++;
 
 
 	if (i < 5) {
-		$("#kauliukas_pirmas").html('');
-		$("#kauliukas_antras").html('');
-		$("#kauliukas_trecias").html('');
+		// $("#kauliukas_pirmas").html('');
+		// $("#kauliukas_antras").html('');
+		// $("#kauliukas_trecias").html('');
 		var random_skaicius1 = Math.floor((Math.random() * 6) + 1);
 		var random_skaicius2 = Math.floor((Math.random() * 6) + 1);
 		var random_skaicius3 = Math.floor((Math.random() * 6) + 1);
@@ -40,7 +42,7 @@ $( "#roll_dice" ).click(function() {
 		console.log(didziausias_laimejimas2);
 
 	} 
-
+//jeigu paskutinis sukimas sukeliame i duomenu baze didziausia
 	if (i === 4) {
 		$.post("game.php", 
 		{
@@ -61,12 +63,12 @@ $( "#roll_dice" ).click(function() {
 	}
 
 });
-
+//pradeti nauja zaidima
 $( "#start_game" ).click(function() {
 	location.reload();
 });
 
-
+//chartas su statistika
 var ctx = document.getElementById("myChart").getContext('2d');
 var mixedChart = new Chart(ctx, {
     // The type of chart we want to create
@@ -87,7 +89,7 @@ var mixedChart = new Chart(ctx, {
     options: {}
 });
 
-
+//gauname duomenis chartui
 $.getJSON("game.php", function(result) {
 
 	$.each(result, function(i, field) {

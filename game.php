@@ -5,7 +5,7 @@ session_start();
 header("Content-type:application/json");
 
 $data = [];
-
+//Jeigu vyksta sukimas irasome i DB
 if (!empty($_POST["sukimas"])) {
 	
 	$servername = "localhost";
@@ -34,7 +34,7 @@ if (!empty($_POST["sukimas"])) {
 	$conn = null;
 }
 
-
+//istraukimas is duomenu bazes
 	try {
 
 	$servername = "localhost";
@@ -44,7 +44,7 @@ if (!empty($_POST["sukimas"])) {
 
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+//jeigu prisijunges
     if (!empty($_SESSION["vardas"])) {
 
     $stmt = $conn->prepare("SELECT * FROM zaidimai WHERE vartotojas = :useris ORDER BY id desc LIMIT 10");
@@ -54,6 +54,7 @@ if (!empty($_POST["sukimas"])) {
 	
 	$stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	//jeigu siuncia info per GET rodome tik ta useri
 	} elseif (!empty($_GET["username"])) {
 
     $stmt = $conn->prepare("SELECT * FROM zaidimai WHERE vartotojas = :useris ORDER BY id desc");
@@ -63,6 +64,7 @@ if (!empty($_POST["sukimas"])) {
 	
 	$stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //jeigu neprisijunges rodome viska
     } else {
     $stmt = $conn->prepare("SELECT * FROM zaidimai ORDER BY id desc");
 	
